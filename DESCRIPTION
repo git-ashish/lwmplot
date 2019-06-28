@@ -1,0 +1,15 @@
+Package: lwmplot
+Type: Package
+Title: Plot LWM faarm and soil data
+Version: 0.1.0
+Date: 2019-06-28
+Author: Ashish Singh
+Maintainer: Ashish Singh <me@iashishsingh.com>
+Description: OpenCPU application to chart Land and Water Management farm and solid plots
+License: GPL
+Imports:
+    DBI,
+    RPostgres,
+    ggplot2,
+    plotly
+RoxygenNote: 6.1.1.9000
