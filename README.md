@@ -11,5 +11,7 @@ Use the same function locally:
     library(lwmplot)
     lwmplot()
     ?lwmplot
+    
+    ocpu_start_app("lwmplot")
 
 For more information about OpenCPU apps, see [opencpu.js](https://www.opencpu.org/apps.html)
