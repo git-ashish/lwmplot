@@ -8,11 +8,10 @@
 #' @import DBI RPostgres ggplot2 plotly
 #' @export
 #' @examples \dontrun{
-#' lwmplot(max = 10)
-#' lwmplot(max = 40)
-#' lwmplot(schema = "farms", max = 30)
+#' leafplot(u = "db_user", pw = "db_password", port = db_port)
+#' leafplot(u = "db_user", pw = "db_password", port = db_port, usePlotly = TRUE)
 #' }
-lwmplot <- function (schema = "soil_survey_data", max = 20, u, pw, port) {
+leafplot <- function (u, pw, port, usePlotly = FALSE) {
   
   # Create Connection
   # - provide the schema to connect to via "options"
@@ -72,18 +71,32 @@ lwmplot <- function (schema = "soil_survey_data", max = 20, u, pw, port) {
     geom_hline(data = leafData, linetype="dotted", colour="#ff710c", alpha = 0.5, aes(yintercept = range_max))
   
   # 3. Add facet and theme options
-  # theleafplot <- 
-  dataplot_leafdashbd +
-                    theme(
-                      axis.ticks = element_blank(),
-                      axis.title.x = element_blank(),
-                      axis.text.x = element_blank(),
-                      legend.title = element_blank(),
-                      panel.grid.major.x=element_blank()
-                    )+
-                    facet_wrap(order_seq ~ ., scales = "free_y", ncol=3, labeller = labeller(order_seq = leaf_attr_names))
   
-  # 4. Generate Ploty object
-  #ggplotly(theleafplot)
+  if(usePlotly){
+    theleafplot <- 
+      dataplot_leafdashbd +
+      theme(
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        legend.title = element_blank(),
+        panel.grid.major.x=element_blank()
+      )+
+      facet_wrap(order_seq ~ ., scales = "free_y", ncol=3, labeller = labeller(order_seq = leaf_attr_names))
+    
+    # 4. Generate Ploty object
+    return (ggplotly(theleafplot))
+    
+  }else{
+    dataplot_leafdashbd +
+      theme(
+        axis.ticks = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        legend.title = element_blank(),
+        panel.grid.major.x=element_blank()
+      )+
+      facet_wrap(order_seq ~ ., scales = "free_y", ncol=3, labeller = labeller(order_seq = leaf_attr_names))
+  }
   
 }

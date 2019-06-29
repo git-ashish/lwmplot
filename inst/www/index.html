@@ -32,6 +32,14 @@ function getUrlVars(){
     return vars;
 }
 $(function(){
+  
+  var oDefaultConfig = getUrlVars() || {};
+  
+  var rFunctionToExecute = oDefaultConfig.plot ? oDefaultConfig.plot : "leafplot";
+  
+  if(["leafplot", "soilDashboardPlot"].indexOf(rFunctionToExecute) == -1){
+    rFunctionToExecute = "leafplot";
+  }
 
   //optional, requires jquery-ui.
   $("#plotdiv").resizable();
@@ -59,7 +67,7 @@ $(function(){
       return;
     }
     
-    var req = $("#plotdiv").rplot("lwmplot", {
+    var req = $("#plotdiv").rplot(rFunctionToExecute, {
       pw: oConfig.pw,
       u: oConfig.u,
       port: oConfig.port
@@ -81,7 +89,7 @@ $(function(){
       return;
     }
     
-    var req = $("#plotdiv").rplot("lwmplotly", {
+    var req = $("#plotdiv").rplot(rFunctionToExecute, {
       pw: oConfig.pw,
       u: oConfig.u,
       port: oConfig.port
