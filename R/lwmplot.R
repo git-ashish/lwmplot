@@ -72,7 +72,8 @@ lwmplot <- function (schema = "soil_survey_data", max = 20, u, pw, port) {
     geom_hline(data = leafData, linetype="dotted", colour="#ff710c", alpha = 0.5, aes(yintercept = range_max))
   
   # 3. Add facet and theme options
-  theleafplot <- (dataplot_leafdashbd +
+  # theleafplot <- 
+  dataplot_leafdashbd +
                     theme(
                       axis.ticks = element_blank(),
                       axis.title.x = element_blank(),
@@ -80,9 +81,9 @@ lwmplot <- function (schema = "soil_survey_data", max = 20, u, pw, port) {
                       legend.title = element_blank(),
                       panel.grid.major.x=element_blank()
                     )+
-                    facet_wrap(order_seq ~ ., scales = "free_y", ncol=3, labeller = labeller(order_seq = leaf_attr_names)))
+                    facet_wrap(order_seq ~ ., scales = "free_y", ncol=3, labeller = labeller(order_seq = leaf_attr_names))
   
   # 4. Generate Ploty object
-  ggplotly(theleafplot)
+  #ggplotly(theleafplot)
   
 }
