@@ -1,5 +1,5 @@
-OpenCPU App: lwmplot
----------------------
+## OpenCPU App: lwmplot
+
 
 Simple OpenCPU Application. To install in R:
 
