@@ -13,7 +13,8 @@ Use the same function locally:
     ?lwmplot
     
 To run your app locally in opencpu:
+
     library(opencpu)
     ocpu_start_app("lwmplot")
 
-For more information about OpenCPU apps, see [opencpu.js](https://www.opencpu.org/apps.html)
+OpenCPU apps, see [opencpu.js](https://www.opencpu.org/apps.html)
