@@ -92,7 +92,8 @@ $(function(){
     var req = $("#plotdiv").rplot(rFunctionToExecute, {
       pw: oConfig.pw,
       u: oConfig.u,
-      port: oConfig.port
+      port: oConfig.port,
+      usePlotly: true
     }).always(function(){
       $("#plotbutton").removeAttr("disabled");
     }).fail(function(){
