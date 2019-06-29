@@ -10,6 +10,6 @@ License: GPL
 Imports:
     DBI,
     RPostgres,
-    ggplot2,
-    plotly
+    plotly,
+    ggplot2
 RoxygenNote: 6.1.1.9000

@@ -70,6 +70,28 @@ $(function(){
     });
   });
   
+  $("#plotlybutton").on("click", function(e){
+    e.preventDefault();
+    $("#plotbutton").attr("disabled", "disabled");
+    
+    var oConfig = getUrlVars();
+    
+    if(!oConfig.pw){
+      alert('ERROR: Missing DB details');
+      return;
+    }
+    
+    var req = $("#plotdiv").rplot("lwmplotly", {
+      pw: oConfig.pw,
+      u: oConfig.u,
+      port: oConfig.port
+    }).always(function(){
+      $("#plotbutton").removeAttr("disabled");
+    }).fail(function(){
+      alert("HTTP error " + req.status + ": " + req.responseText);
+    });
+  });
+  
   // random plot by default
   randomPlot();
 });
@@ -87,7 +109,8 @@ $(function(){
   width: 164px;
 }
 
-#plotbutton{
+#plotbutton,
+#plotlybutton{
   width: 120px;
   margin-left: 20px;
 }
@@ -135,6 +158,7 @@ $(function(){
     <br />
             
     <button class="btn btn-small btn-primary" id="plotbutton"><i class="icon-ok icon-white"></i>Generate Plot</button>
+    <button class="btn btn-small btn-primary" id="plotlybutton"><i class="icon-ok icon-white"></i>Generate Plot using plotly</button>
     
   </div>
 </body>
