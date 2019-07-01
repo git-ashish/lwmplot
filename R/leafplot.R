@@ -5,7 +5,7 @@
 #' @param schema name of the database schema to use. Default: "soil_survey_data"
 #' @param max maximum number of records to limit the resultst to. Default: 20, max: 100
 #' @author Ashish Singh https://github.com/git-ashish
-#' @import DBI RPostgres ggplot2 plotly
+#' @import DBI RPostgres ggplot2 plotly htmlwidgets widgetframe
 #' @export
 #' @examples \dontrun{
 #' leafplot(u = "db_user", pw = "db_password", port = db_port)
@@ -85,7 +85,11 @@ leafplot <- function (u, pw, port, usePlotly = FALSE) {
       facet_wrap(order_seq ~ ., scales = "free_y", ncol=3, labeller = labeller(order_seq = leaf_attr_names))
     
     # 4. Generate Ploty object
-    return (ggplotly(theleafplot))
+    g <- ggplotly(theleafplot)
+    
+    htmlwidgets::saveWidget(widgetframe::frameableWidget(g), "mygraph.html", selfcontained = TRUE)
+    data <- readLines('mygraph.html')
+    return(list(text = paste(data, collapse = "\n")))
     
   }else{
     dataplot_leafdashbd +

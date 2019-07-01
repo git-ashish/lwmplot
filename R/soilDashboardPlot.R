@@ -5,7 +5,7 @@
 #' @param schema name of the database schema to use. Default: "soil_survey_data"
 #' @param max maximum number of records to limit the resultst to. Default: 20, max: 100
 #' @author Ashish Singh https://github.com/git-ashish
-#' @import DBI RPostgres ggplot2 plotly
+#' @import DBI RPostgres ggplot2 plotly htmlwidgets
 #' @export
 #' @examples \dontrun{
 #' soilDashboardPlot(u = "db_user", pw = "db_password", port = db_port)
@@ -115,7 +115,9 @@ soilDashboardPlot <- function (u, pw, port, usePlotly = FALSE) {
                   facet_wrap(order_seq ~ ., scales = "free_y", ncol=3, labeller = labeller(order_seq = soilsurv_attr_names)))
     
     # 4. Generate Ploty object
-    ggplotly(theplot)
+    g <- ggplotly(theplot)
+    
+    htmlwidgets::saveWidget(g, "mygraph.html", selfcontained = FALSE)
     
   }else{
     dataplot_dashbd +

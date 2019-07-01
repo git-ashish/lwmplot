@@ -11,5 +11,6 @@ Imports:
     DBI,
     RPostgres,
     plotly,
-    ggplot2
+    ggplot2,
+    htmlwidgets
 RoxygenNote: 6.1.1.9000
