@@ -87,9 +87,11 @@ leafplot <- function (u, pw, port, usePlotly = FALSE) {
     # 4. Generate Ploty object
     g <- ggplotly(theleafplot)
     
-    htmlwidgets::saveWidget(widgetframe::frameableWidget(g), "mygraph.html", selfcontained = TRUE)
-    data <- readLines('mygraph.html')
-    return(list(text = paste(data, collapse = "\n")))
+    htmlwidgets::saveWidget(g, "mygraph.html", selfcontained = FALSE)
+    
+    #htmlwidgets::saveWidget(widgetframe::frameableWidget(g), "mygraph.html", selfcontained = TRUE)
+    #data <- readLines('mygraph.html')
+    #return(list(text = paste(data, collapse = "\n")))
     
   }else{
     dataplot_leafdashbd +

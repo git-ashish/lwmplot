@@ -40,6 +40,8 @@ $(function(){
   if(["leafplot", "soilDashboardPlot"].indexOf(rFunctionToExecute) == -1){
     rFunctionToExecute = "leafplot";
   }
+  
+  $("#plotName").html("LWM - Demo - " + rFunctionToExecute);
 
   //optional, requires jquery-ui.
   $("#plotdiv").resizable();
@@ -67,6 +69,8 @@ $(function(){
       alert('ERROR: Missing DB details');
       return;
     }
+    
+    toggleContainer(1);
     
     var req = $("#plotdiv").rplot(rFunctionToExecute, {
       pw: oConfig.pw,
@@ -108,8 +112,7 @@ $(function(){
     
   });
   
-  // random plot by default
-  randomPlot();
+  $("#plotlybutton").click();
 });
 
 function toggleContainer(bShow){
@@ -147,7 +150,7 @@ iframe {
   <div id="container" class="container">
 
     <div class="page-header">
-      <h1>LWM - Leaf Sample Demo Plot</h1>
+      <h1 id="plotName"></h1>
     </div>
     
     <div class="row">
